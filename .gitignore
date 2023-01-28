@@ -1,14 +1,11 @@
 api/venv
 api/env
 api/.env
-api/Dockerfile
 api/users/migrations
 api/users/__pycache__
 api/task/__pycache__
 api/reminders/migrations
 api/reminders/__pycache__
-
-frontend/Dockerfile
 
 # dependencies
 frontend/node_modules
