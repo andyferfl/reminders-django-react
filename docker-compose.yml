@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+
+  pgdb:
+    image: postgres
+    container_name: pgdb
+    environment:
+      POSTGRES_DB: 'taskdb'
+      POSTGRES_USER: 'test'
+      POSTGRES_PASSWORD: 'netlab'
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data/db:/var/lib/postresql/data/
+
+  django:
+    build: 
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./api:/user/src/app/backend
+    ports:
+      - '8000:8000'
+    depends_on:
+      - pgdb
+
+  react:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports: 
+      - '3000:3000'
+    volumes: 
+      - ./frontend:/user/src/app/frontend
+    depends_on:
+      - django
+
+

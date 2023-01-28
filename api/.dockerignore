@@ -1,0 +1,9 @@
+venv
+env
+.env
+Dockerfile
+users/migrations
+users/__pycache__
+task/__pycache__
+reminders/migrations
+reminders/__pycache__
